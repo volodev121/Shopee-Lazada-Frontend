@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
-import { useTheme, Theme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import {
   Toolbar,
   List,
@@ -10,7 +10,6 @@ import {
   Tooltip,
   Avatar,
   Box,
-  ListItem,
   ListItemText,
   Collapse,
   ListItemButton,
@@ -24,20 +23,17 @@ import {
   Menu as IconMenu,
   ChevronLeft as IconChevronLeft,
   ChevronRight as IconChevronRight,
-  Group as IconGroup,
+  // Group as IconGroup,
   Dashboard as IconDashboard,
-  List as IconList,
+  // List as IconList,
   Inventory as IconInventory,
 } from "@mui/icons-material";
 import { AppBar, DrawerHeader, Main } from "./AppLayoutStyled";
-
-import { MenuItems } from "./SidebarMenu";
 
 const drawerWidth = 240;
 export default function AppLayout() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [menuitems, setMenuitems] = React.useState(MenuItems);
 
   const handleDrawerOpen = () => {
     setOpen(true);
