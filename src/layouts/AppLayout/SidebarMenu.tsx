@@ -1,7 +1,7 @@
 import {
   Group as IconGroup,
   Dashboard as IconDashboard,
-  List as IconList,
+  // List as IconList,
   Inventory as IconInventory,
 } from "@mui/icons-material";
 export const MenuItems = [
