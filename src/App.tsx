@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Suspense } from "react";
 import CirclesLoader from "./components/CirclesLoader/CirclesLoader";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import {  useAppSelector } from "./hooks";
 import AuthenticatedRoutes from "./components/Routes/MainRoutes";
 import AuthRoutes from "./components/Routes/AuthRoutes";
 
