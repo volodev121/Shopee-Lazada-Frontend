@@ -135,7 +135,7 @@ export default function AppLayout() {
             <Collapse in={open1} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="Starred" />
+                  <ListItemText primary="Singapore" />
                 </ListItemButton>
               </List>
             </Collapse>
