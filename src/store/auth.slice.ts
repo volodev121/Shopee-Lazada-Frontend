@@ -13,7 +13,7 @@ interface authState {
 const initialState: authState = {
   auth: { name: "", email: "" },
   token: "",
-  isAuthenticated: true,
+  isAuthenticated: false,
   isLoading: true,
 };
 
@@ -22,7 +22,9 @@ export const authSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    signIn: (state) => { },
+    signIn: (state) => {
+      state.isAuthenticated = true
+    },
     signUp: (state) => { },
     // Use the PayloadAction type to declare the contents of `action.payload`
     signout: (state, action: PayloadAction<number>) => { },

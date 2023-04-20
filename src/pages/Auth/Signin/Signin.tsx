@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import {
@@ -21,9 +22,13 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks";
+import { signIn } from "../../../store/auth.slice";
 
 const PageSignin: React.FC = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const [checked, setChecked] = React.useState<boolean>(false);
 
@@ -116,6 +121,8 @@ const PageSignin: React.FC = () => {
           password: Yup.string().max(255).required("Password is required"),
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          dispatch(signIn());
+          navigate("/");
           // try {
           //   if (scriptedRef.current) {
           //     setStatus({ success: true });

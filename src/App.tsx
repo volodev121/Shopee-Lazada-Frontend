@@ -12,8 +12,8 @@ const App = () => {
   return (
     <Router>
       <Suspense fallback={<CirclesLoader />}>
-        {!isAuthenticated && <AuthenticatedRoutes></AuthenticatedRoutes>}
-        {isAuthenticated && <AuthRoutes></AuthRoutes>}
+        {isAuthenticated && <AuthenticatedRoutes></AuthenticatedRoutes>}
+        {!isAuthenticated && <AuthRoutes></AuthRoutes>}
       </Suspense>
     </Router>
   );
