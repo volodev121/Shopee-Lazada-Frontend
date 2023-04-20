@@ -1,21 +1,58 @@
 import {
   Group as IconGroup,
-  Dashboard as IconDashboard,
-  // List as IconList,
   Inventory as IconInventory,
+  AccountCircle as IconAccountCircle,
 } from "@mui/icons-material";
-export const MenuItems = [
+
+type MenuType = {
+  menutitle: string;
+  Items: LinkMenuType[];
+};
+type LinkMenuType = {
+  title: string;
+  icon?: React.ReactNode;
+  path?: string;
+  type: string;
+  dropdownItems?: SubMenu[];
+};
+type SubMenu = {
+  title: string;
+  path: string;
+};
+export const menuItems: MenuType[] = [
   {
-    menutitle: "MAIN",
+    menutitle: "Dashboard",
     Items: [
       {
-        path: `/`,
-        icon: <IconDashboard />,
-        type: "link",
-        active: true,
-        selected: false,
-
         title: "Dashboard",
+        icon: <IconGroup />,
+        path: "/",
+        type: "link",
+      },
+    ],
+  },
+
+  {
+    menutitle: "Inventory Management",
+    Items: [
+      {
+        title: "Inventory",
+        icon: <IconInventory />,
+        type: "sub",
+        dropdownItems: [
+          {
+            title: "Explore",
+            path: "routes.vote",
+          },
+          {
+            title: "Vote with pools",
+            path: "routes.proposals",
+          },
+          {
+            title: "Create proposal",
+            path: "routes.createProposal",
+          },
+        ],
       },
     ],
   },
@@ -23,31 +60,13 @@ export const MenuItems = [
     menutitle: "User Management",
     Items: [
       {
-        path: `/users`,
-        icon: <IconGroup />,
-        type: "link",
-        active: true,
-        selected: false,
-
-        title: "Users",
-      },
-    ],
-  },
-  {
-    menutitle: "Inventory Management",
-    Items: [
-      {
-        title: "Authentication",
-        icon: <IconInventory />,
+        title: "My Account",
+        icon: <IconAccountCircle />,
         type: "sub",
-        children: [
+        dropdownItems: [
           {
-            path: `/inventory`,
-            type: "link",
-
-            active: false,
-            selected: false,
-            title: "Inventory",
+            title: "My Profile",
+            path: "profile",
           },
         ],
       },

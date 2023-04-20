@@ -3,60 +3,53 @@ import { Outlet } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import {
   Toolbar,
-  List,
   CssBaseline,
-  Divider,
   IconButton,
   Tooltip,
   Avatar,
   Box,
-  ListItemText,
-  Collapse,
-  ListItemButton,
-  ListItemIcon,
   Drawer,
+  List,
+  Paper,
 } from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-
+import {  ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   Menu as IconMenu,
   ChevronLeft as IconChevronLeft,
   ChevronRight as IconChevronRight,
-  // Group as IconGroup,
-  Dashboard as IconDashboard,
-  // List as IconList,
-  Inventory as IconInventory,
 } from "@mui/icons-material";
 import { AppBar, DrawerHeader, Main } from "./AppLayoutStyled";
+import { menuItems } from "./SidebarMenu";
+import CollapseMenuItem from "../../components/CollapsableMenu";
 
 const drawerWidth = 240;
+
 export default function AppLayout() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
+  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState("");
+  const [selectedItem, setSelectedItem] = React.useState(
+    menuItems[0].Items[0].title
+  );
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
-  const [open1, setOpen1] = React.useState(true);
 
-  const handleClick = () => {
-    setOpen1(!open1);
-  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
-        open={open}
+        open={openDrawer}
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: "transparent",
+          opacity: "0.8",
           boxShadow: "none",
-          border: "solid 1px #e2e2e2",
+          borderBottom: "solid 0.5px #e2e2e2",
         }}
       >
         <Toolbar>
@@ -67,10 +60,10 @@ export default function AppLayout() {
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: "none" }),
+              ...(openDrawer && { display: "none" }),
             }}
           >
-            <IconMenu sx={{ color: "#2e2e2e" }} />
+            <IconMenu sx={{ color: "#000000" }} />
           </IconButton>
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
@@ -91,12 +84,19 @@ export default function AppLayout() {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          backgroundColor: "transparent",
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={openDrawer}
+        style={{ backgroundColor: "transparent" }}
       >
-        <DrawerHeader>
+        <DrawerHeader
+          sx={{
+            backgroundColor: "transparent",
+            borderBottom: "solid 0.5px #e2e2e2",
+          }}
+        >
           <img
             src="/assets/imgs/logo.png"
             alt=""
@@ -111,47 +111,43 @@ export default function AppLayout() {
             )}
           </IconButton>
         </DrawerHeader>
-        <Box sx={{ backgroundColor: "#e2e2e2", width: "100%", height: "100%" }}>
-          <Divider />
-          <List>
-            <ListItemButton>
-              <ListItemIcon>
-                <IconDashboard />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard " />
-            </ListItemButton>
-            <Divider />
-            <ListItemButton onClick={handleClick}>
-              <ListItemIcon>
-                <IconInventory />
-              </ListItemIcon>
-              <ListItemText primary="Inventory " />
-              {open1 ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open1} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="Singapore" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-            <ListItemButton>
-              <ListItemIcon>
-                <IconDashboard />
-              </ListItemIcon>
-              <ListItemText primary="Expiry Date Management " />
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemIcon>
-                <IconDashboard />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard " />
-            </ListItemButton>
-          </List>
-          <Divider />
-        </Box>
+
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiListItemButton: {
+                defaultProps: {
+                  disableTouchRipple: true,
+                },
+              },
+            },
+            palette: {
+              mode: "dark",
+              primary: { main: "rgb(102, 157, 246)" },
+              background: { paper: "rgb(5, 30, 52)" },
+            },
+          })}
+        >
+          <Paper
+            elevation={0}
+            sx={{ width: "100%", height: "100%", overflowY: "auto" }}
+          >
+            <List>
+              {menuItems.map((menu, index) => (
+                <CollapseMenuItem
+                  menu={menu}
+                  key={`menu-${index}`}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  selectedItem={selectedItem}
+                  setSelectedItem={setSelectedItem}
+                />
+              ))}
+            </List>
+          </Paper>
+        </ThemeProvider>
       </Drawer>
-      <Main open={open}>
+      <Main open={openDrawer}>
         <DrawerHeader />
         <Outlet />
       </Main>
