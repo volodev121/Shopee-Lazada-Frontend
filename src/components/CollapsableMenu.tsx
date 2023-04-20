@@ -6,7 +6,6 @@ import {
   ListItemText,
   ListItem,
   ListItemButton,
-  List,
 } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -70,7 +69,7 @@ const CollapseMenuItem = (props: PageProps) => {
             </ListItemButton>
           </ListItem>
         ) : (
-          <List key={`sub-${index}`}>
+          <div key={`sub-${index}`}>
             <ListItem>
               <ListItemButton
                 onClick={() => {
@@ -126,7 +125,7 @@ const CollapseMenuItem = (props: PageProps) => {
                 </ListItem>
               ))}
             </Collapse>
-          </List>
+          </div>
         );
       })}
     </>

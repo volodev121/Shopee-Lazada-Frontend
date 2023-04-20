@@ -26,7 +26,7 @@ const Page404 = () => (
         >
           <img
             alt="Under development"
-            src="/assets/bg/error-404.png"
+            src="/assets/imgs/bg/error-404.png"
             style={{
               display: "inline-block",
               maxWidth: "100%",
