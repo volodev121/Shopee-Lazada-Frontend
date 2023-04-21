@@ -1,14 +1,13 @@
-import { Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
+import PageHeader from "../../layouts/PageHeader/PageHeader";
 
-const PageDashboard = () => {
-  console.log("Dashboard");
+interface DashboardProps {}
+const PageDashboard: React.FC<DashboardProps> = () => {
   return (
-    <>
-      Dashboard
-      <Button color="success" variant="outlined">
-        A
-      </Button>
-    </>
+    <Box>
+      <PageHeader title="Dashboard" active="Dashboard" items={["Dashboard"]} />
+      <Grid container spacing={4}></Grid>
+    </Box>
   );
 };
 

@@ -26,6 +26,7 @@ import { AppBar, DrawerHeader, Main } from "./AppLayoutStyled";
 import { menuItems } from "./SidebarMenu";
 import CollapseMenuItem from "../../components/CollapsableMenu";
 import LanguagePopover from "./LanguagePopver";
+import StyledBadge from "../../components/StyledBadge";
 
 const drawerWidth = 240;
 
@@ -86,7 +87,6 @@ export default function AppLayout() {
         open={openDrawer}
         sx={{
           backgroundColor: "transparent",
-          opacity: "0.8",
           borderBottom: "solid 0.5px #e2e2e2",
           boxShadow:
             "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important",
@@ -124,7 +124,16 @@ export default function AppLayout() {
                 onClick={handleOpenMenu}
                 ref={anchorRef}
               >
-                <Avatar alt="Remy Sharp" src="/assets/imgs/avatar/1 (91).jpg" />
+                <StyledBadge
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  variant="dot"
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/assets/imgs/avatar/1 (91).jpg"
+                  />
+                </StyledBadge>
               </IconButton>
             </Tooltip>
 
@@ -168,15 +177,17 @@ export default function AppLayout() {
                             zIndex: 9999,
                           }}
                         >
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/assets/imgs/avatar/1 (91).jpg"
-                            sx={{ width: "100px", height: "100px" }}
-                          />
+                          <IconButton>
+                            <Avatar
+                              alt="Remy Sharp"
+                              src="/assets/imgs/avatar/1 (91).jpg"
+                              sx={{ width: "100px", height: "100px" }}
+                            />
+                          </IconButton>
                           <Typography
                             sx={{ fontSize: "20px", pt: 1, fontWeight: 700 }}
                           >
-                            Alexandr Bliakh
+                            John Doe
                           </Typography>
                           <Typography
                             sx={{

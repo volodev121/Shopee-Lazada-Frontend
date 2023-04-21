@@ -70,7 +70,7 @@ const EditPassword = () => {
           sx={{ width: "100px", height: "100px" }}
         />
         <Typography sx={{ fontSize: "20px", pt: 1, fontWeight: 700 }}>
-          Alexandr Bliakh
+          John Doe
         </Typography>
         <Typography
           sx={{
@@ -123,17 +123,18 @@ const EditPassword = () => {
                 error={Boolean(touched.password && errors.password)}
               >
                 <InputLabel htmlFor="outlined-adornment-password-register">
-                  Confirm Password
+                  Password
                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password-register"
                   type={showPassword ? "text" : "password"}
-                  value={values.password}
-                  name="password"
+                  value={values.confirm}
+                  name="confirm"
                   label="Confirm Password"
                   onBlur={handleBlur}
                   onChange={(e) => {
                     handleChange(e);
+                    changePassword(e.target.value);
                   }}
                   startAdornment={
                     <InputAdornment position="start">
@@ -167,18 +168,17 @@ const EditPassword = () => {
                 error={Boolean(touched.password && errors.password)}
               >
                 <InputLabel htmlFor="outlined-adornment-password-register">
-                  Password
+                  Confirm Password
                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password-register"
                   type={showPassword ? "text" : "password"}
-                  value={values.confirm}
-                  name="confirm"
+                  value={values.password}
+                  name="password"
                   label="Confirm Password"
                   onBlur={handleBlur}
                   onChange={(e) => {
                     handleChange(e);
-                    changePassword(e.target.value);
                   }}
                   startAdornment={
                     <InputAdornment position="start">
@@ -241,10 +241,10 @@ const EditPassword = () => {
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained"
+                  variant="outlined"
                   color="primary"
                 >
-                  Sign up
+                  Update
                 </Button>
               </Grid>{" "}
               <Grid item md={6} sm={12} xs={12}>
@@ -252,7 +252,7 @@ const EditPassword = () => {
                   disableElevation
                   fullWidth
                   size="large"
-                  variant="contained"
+                  variant="outlined"
                   color="error"
                 >
                   Cancel

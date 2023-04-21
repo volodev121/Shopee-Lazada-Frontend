@@ -10,7 +10,7 @@ const Page404 = () => (
       padding: "16px",
     }}
   >
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <Box
         sx={{
           alignItems: "center",
@@ -30,7 +30,7 @@ const Page404 = () => (
             style={{
               display: "inline-block",
               maxWidth: "100%",
-              width: 400,
+              width: 300,
             }}
           />
         </Box>
