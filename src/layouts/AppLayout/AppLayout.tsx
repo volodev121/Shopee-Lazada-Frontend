@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
+// import { useTheme } from "@mui/material/styles";
 import {
   Toolbar,
   CssBaseline,
@@ -20,8 +20,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   Menu as IconMenu,
-  ChevronLeft as IconChevronLeft,
-  ChevronRight as IconChevronRight,
+  MenuOpen as IconMenuOepn,
 } from "@mui/icons-material";
 import { AppBar, DrawerHeader, Main } from "./AppLayoutStyled";
 import { menuItems } from "./SidebarMenu";
@@ -31,7 +30,7 @@ import LanguagePopover from "./LanguagePopver";
 const drawerWidth = 240;
 
 export default function AppLayout() {
-  const theme = useTheme();
+  // const theme = useTheme();
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const [openDrawer, setOpenDrawer] = React.useState(true);
@@ -86,7 +85,7 @@ export default function AppLayout() {
         position="fixed"
         open={openDrawer}
         sx={{
-          backgroundColor: "rgba(249, 250, 251, 0.8)",
+          backgroundColor: "transparent",
           opacity: "0.8",
           borderBottom: "solid 0.5px #e2e2e2",
           boxShadow:
@@ -94,18 +93,25 @@ export default function AppLayout() {
         }}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(openDrawer && { display: "none" }),
-            }}
-          >
-            <IconMenu sx={{ color: "#000000" }} />
-          </IconButton>
+          {openDrawer ? (
+            <IconButton onClick={handleDrawerClose}>
+              <IconMenuOepn sx={{ color: "#051e34" }} />
+            </IconButton>
+          ) : (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                // ...(openDrawer && { display: "none" }),
+              }}
+            >
+              <IconMenu sx={{ color: "#051e34" }} />
+            </IconButton>
+          )}
+
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
           >
@@ -180,7 +186,7 @@ export default function AppLayout() {
                             JhonDoe@gmail.com
                           </Typography>
                           <Box sx={{ pt: 2 }}>
-                            <Button variant="outlined" color="info">
+                            <Button variant="outlined" color="primary">
                               Manage Your Account
                             </Button>
                           </Box>
@@ -189,7 +195,7 @@ export default function AppLayout() {
                         <hr style={{ width: "100%" }} />
 
                         <Box sx={{ pt: 1 }}>
-                          <Button variant="contained" color="info">
+                          <Button variant="contained" color="primary">
                             Sign Out
                           </Button>
                         </Box>
@@ -219,25 +225,18 @@ export default function AppLayout() {
       >
         <DrawerHeader
           sx={{
-            backgroundColor: "transparent",
-            borderBottom: "solid 0.5px #e2e2e2",
-            boxShadow:
-              "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important",
+            background: "#051e34",
           }}
         >
           <img
             src="/assets/imgs/logo.png"
             alt=""
-            width={"200px"}
+            width={"240px"}
             height={"64px"}
           />
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <IconChevronRight />
-            ) : (
-              <IconChevronLeft />
-            )}
-          </IconButton>
+          {/* <IconButton onClick={handleDrawerClose}>
+            <IconChevronLeft sx={{ color: "#FFFFFF" }} />
+          </IconButton> */}
         </DrawerHeader>
 
         <ThemeProvider
@@ -258,7 +257,13 @@ export default function AppLayout() {
         >
           <Paper
             elevation={0}
-            sx={{ width: "100%", height: "100%", overflowY: "auto" }}
+            sx={{
+              width: "100%",
+              height: "100%",
+              overflowY: "auto",
+              background: "#122c44",
+              borderRadius: 0,
+            }}
             className="sidebar"
           >
             <List>

@@ -63,7 +63,7 @@ const PageSignup = () => {
     <Grid container direction="column" justifyContent="center">
       <Box sx={{ position: "relative" }}>
         <Typography
-          color={theme.palette.secondary.main}
+          color={theme.palette.primary.main}
           gutterBottom
           variant={matchDownSM ? "h5" : "h4"}
           textAlign={"center"}
@@ -320,7 +320,7 @@ const PageSignup = () => {
                 size="large"
                 type="submit"
                 variant="contained"
-                color="secondary"
+                color="primary"
               >
                 Sign up
               </Button>
