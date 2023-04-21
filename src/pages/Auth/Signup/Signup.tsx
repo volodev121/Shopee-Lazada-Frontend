@@ -106,7 +106,7 @@ const PageSignup = () => {
           variant="outlined"
           sx={{
             cursor: "unset",
-            m: 2,
+            m: 1,
             py: 0.5,
             px: 7,
             fontWeight: 500,
@@ -116,7 +116,7 @@ const PageSignup = () => {
           disableRipple
           disabled
         >
-          OR
+          <span style={{ color: "#2e2e2e" }}>OR</span>
         </Button>
 
         <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -170,6 +170,7 @@ const PageSignup = () => {
                   name="fname"
                   type="text"
                   defaultValue=""
+                  size="small"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -180,12 +181,14 @@ const PageSignup = () => {
                   name="lname"
                   type="text"
                   defaultValue=""
+                  size="small"
                 />
               </Grid>
             </Grid>
             <Grid item md={12} sm={12} xs={12} sx={{ pt: 2 }}>
               <FormControl
                 fullWidth
+                size="small"
                 error={Boolean(touched.email && errors.email)}
               >
                 <InputLabel htmlFor="outlined-adornment-email-register">
@@ -214,6 +217,7 @@ const PageSignup = () => {
             <Grid item md={12} sm={12} xs={12} sx={{ pt: 2 }}>
               <FormControl
                 fullWidth
+                size="small"
                 error={Boolean(touched.password && errors.password)}
               >
                 <InputLabel htmlFor="outlined-adornment-password-register">

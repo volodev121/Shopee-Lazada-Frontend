@@ -102,7 +102,7 @@ const PageSignin: React.FC = () => {
           disableRipple
           disabled
         >
-          OR
+          <span style={{ color: "#2e2e2e" }}>OR</span>
         </Button>
 
         <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -152,6 +152,7 @@ const PageSignin: React.FC = () => {
               <FormControl
                 fullWidth
                 error={Boolean(touched.email && errors.email)}
+                size="small"
               >
                 <InputLabel htmlFor="outlined-adornment-email-login">
                   Email Address
@@ -179,6 +180,7 @@ const PageSignin: React.FC = () => {
             <Box pt={4}>
               <FormControl
                 fullWidth
+                size="small"
                 error={Boolean(touched.password && errors.password)}
               >
                 <InputLabel htmlFor="outlined-adornment-password-login">
