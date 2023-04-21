@@ -3,7 +3,6 @@ import {
   Inventory as IconInventory,
   AccountCircle as IconAccountCircle,
   Telegram as IconTelegram,
-  LocalGroceryStore as IconLocalGeoceryStore,
   Dashboard as IconDashboard,
 } from "@mui/icons-material";
 
