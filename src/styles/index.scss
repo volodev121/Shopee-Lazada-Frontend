@@ -21,6 +21,20 @@ code {
     monospace;
 }
 
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.395);
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

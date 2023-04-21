@@ -14,10 +14,8 @@ import {
   Grow,
   Popper,
   ClickAwayListener,
-  MenuItem,
-  MenuList,
-  ListItemText,
   Typography,
+  Button,
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
@@ -64,14 +62,14 @@ export default function AppLayout() {
     setOpenMenu((prevOpen) => !prevOpen);
   };
 
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpenMenu(false);
-    } else if (event.key === "Escape") {
-      setOpenMenu(false);
-    }
-  }
+  // function handleListKeyDown(event: React.KeyboardEvent) {
+  //   if (event.key === "Tab") {
+  //     event.preventDefault();
+  //     setOpenMenu(false);
+  //   } else if (event.key === "Escape") {
+  //     setOpenMenu(false);
+  //   }
+  // }
 
   React.useEffect(() => {
     if (prevOpen.current === true && openMenu === false) {
@@ -90,8 +88,9 @@ export default function AppLayout() {
         sx={{
           backgroundColor: "rgba(249, 250, 251, 0.8)",
           opacity: "0.8",
-          boxShadow: "none",
           borderBottom: "solid 0.5px #e2e2e2",
+          boxShadow:
+            "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important",
         }}
       >
         <Toolbar>
@@ -141,42 +140,60 @@ export default function AppLayout() {
                 >
                   <Paper>
                     <ClickAwayListener onClickAway={handleCloseMenu}>
-                      <MenuList
-                        autoFocusItem={openMenu}
-                        id="composition-menu"
-                        aria-labelledby="composition-button"
-                        onKeyDown={handleListKeyDown}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          pb: 2,
+                          zIndex: 9999,
+                        }}
                       >
-                        <MenuItem onClick={handleCloseMenu}>
-                          <ListItemText
-                            primaryTypographyProps={{
-                              fontWeight: "medium",
-                              variant: "body2",
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            pt: 4,
+                            pb: 2,
+                            px: { sm: 10, xs: 3 },
+                            zIndex: 9999,
+                          }}
+                        >
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/assets/imgs/avatar/1 (91).jpg"
+                            sx={{ width: "100px", height: "100px" }}
+                          />
+                          <Typography
+                            sx={{ fontSize: "20px", pt: 1, fontWeight: 700 }}
+                          >
+                            Alexandr Bliakh
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
                             }}
                           >
-                            Profile
-                          </ListItemText>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseMenu}>
-                          <ListItemText
-                            primaryTypographyProps={{
-                              fontWeight: "medium",
-                              variant: "body2",
-                            }}
-                          >
-                            My account
-                          </ListItemText>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseMenu}>
-                          <ListItemText
-                            primary="Logout"
-                            primaryTypographyProps={{
-                              fontWeight: "medium",
-                              variant: "body2",
-                            }}
-                          ></ListItemText>
-                        </MenuItem>
-                      </MenuList>
+                            JhonDoe@gmail.com
+                          </Typography>
+                          <Box sx={{ pt: 2 }}>
+                            <Button variant="outlined" color="info">
+                              Manage Your Account
+                            </Button>
+                          </Box>
+                        </Box>
+
+                        <hr style={{ width: "100%" }} />
+
+                        <Box sx={{ pt: 1 }}>
+                          <Button variant="contained" color="info">
+                            Sign Out
+                          </Button>
+                        </Box>
+                      </Box>
                     </ClickAwayListener>
                   </Paper>
                 </Grow>
@@ -204,6 +221,8 @@ export default function AppLayout() {
           sx={{
             backgroundColor: "transparent",
             borderBottom: "solid 0.5px #e2e2e2",
+            boxShadow:
+              "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important",
           }}
         >
           <img
@@ -240,31 +259,8 @@ export default function AppLayout() {
           <Paper
             elevation={0}
             sx={{ width: "100%", height: "100%", overflowY: "auto" }}
+            className="sidebar"
           >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                pt: 4,
-                pb: 1,
-              }}
-            >
-              <Avatar
-                alt="Remy Sharp"
-                src="/assets/imgs/avatar/1 (91).jpg"
-                sx={{ width: "120px", height: "120px" }}
-              />
-              <Typography sx={{ fontSize: "14px", pt: 1 }}>
-                Alexandr Bliakh
-              </Typography>
-              <Typography
-                sx={{ fontSize: "12px", color: "rgba(255,255,255,.8)" }}
-              >
-                JhonDoe@gmail.com
-              </Typography>
-            </Box>
             <List>
               {menuItems.map((menu, index) => (
                 <CollapseMenuItem
